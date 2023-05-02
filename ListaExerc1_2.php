@@ -21,7 +21,7 @@ if(isset($_POST["calcular"])){
     }
     if (is_numeric($nota1) && is_numeric($nota2) && is_numeric($nota3) && is_numeric($nota4)){
         # code...
-        $media = ($nota1*2 + $nota2*2 + $nota3*3 + $nota4*3)/10;
+        $media = ($nota1*2 + $nota2*3 + $nota3*4 + $nota4*5)/14;
     }else{
         $media="Digite apenas números, tente novamente.";
     }
@@ -47,7 +47,7 @@ if(isset($_POST["calcular"])){
         Nota3    <input type="text" name="nota3" id=""><br>
         Nota4    <input type="text" name="nota4" id=""><br>
         <input type="submit" name="calcular"><br>
-        <p>O Resultado é : <?php echo $media;?></p>
+        <p>O Resultado é : <?php echo round($media,2);?></p>
     </form>
 
 </body>
