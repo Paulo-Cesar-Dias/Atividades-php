@@ -5,6 +5,7 @@ $nota2="";
 $nota3="";
 $nota4="";
 $media="";
+$result="";
 $medianota="";
 if (isset($_POST["calcular"])) {
     $calcular= $_POST["calcular"];
@@ -28,34 +29,28 @@ if (isset($_POST["calcular"])) {
         # code...
         $media=$_POST["media"];
     }
-
-    function calcmedia($nota1, $nota2, $nota3, $nota4,$media)
-    {
-       
-        if( $media=="Aritimética"){
-            $medianota=($nota1+$nota2+$nota3+$nota4)/4;
-            return $medianota;
-        }else if( $media=="Ponderada"){
-            $medianota=($nota1*2+$nota2*2+$nota3*3+$nota4*3)/10;
-            return $medianota;
-        }else{
-            $medianota=(4/(1/$nota1)+(1/$nota2)+(1/$nota3)+(1/$nota4));
-            return $medianota;
-        }
-        
-
+    function arit($nota1,$nota2,$nota3,$nota4){
+        $medianota=($nota1+$nota2+$nota3+$nota4)/4;
+        return $medianota; 
     }
-
-
-
-
-
-
-
-
-
-
-
+    function ponde($nota1,$nota2,$nota3,$nota4){
+        $medianota=($nota1*2+$nota2*2+$nota3*3+$nota4*3)/10;
+        return $medianota; 
+    }
+    function harm($nota1,$nota2,$nota3,$nota4){
+        $medianota=4/(1/$nota1+1/$nota2+1/$nota3+1/$nota4);
+        return $medianota; 
+    }
+    if ($media=="aritmética") {
+        $result=arit($nota1,$nota2,$nota3,$nota4);
+    }
+    if ($media=="ponderada") {
+        $result=ponde($nota1,$nota2,$nota3,$nota4);
+    }
+    if ($media=="harmônica") {
+        $result=harm($nota1,$nota2,$nota3,$nota4);
+    }
+ 
 
 }
 
@@ -79,18 +74,18 @@ if (isset($_POST["calcular"])) {
         <label for="nota3">Nota 3:</label>  <input type="text" name="nota3"><br>
         <label for="nota4">Nota 4:</label>  <input type="text" name="nota4"><br>
         <br>
-        <label for="media">Aritimética</label>
-        <input type="radio" name="media" value="Aritimética"><br>
+        <label for="media">Aritmética</label>
+        <input type="radio" name="media" value="aritmética"><br>
         <label for="media">Ponderada</label>
-        <input type="radio" name="media" value="Ponderada"><br>
-        <label for="media">Armónica</label>
-        <input type="radio" name="media" value="Harmônica"><br><br>
+        <input type="radio" name="media" value="ponderada"><br>
+        <label for="media">Harmónica</label>
+        <input type="radio" name="media" value="harmônica"><br><br>
 
         <input type="submit" name="calcular">
         <?php 
         
 
-        echo "A média ". $media . " é " . calcmedia($nota1, $nota2, $nota3, $nota4,$media);
+        echo "A média ". $media . " é " . $result;
 
             ?>
         
