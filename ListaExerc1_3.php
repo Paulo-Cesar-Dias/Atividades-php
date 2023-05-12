@@ -7,29 +7,40 @@ $msg="";
 if(isset($_POST["calcular"])){
     $botao = $_POST["calcular"];
 
-    if(isset($_POST["altura"])){
+    if(isset($_POST["altura"])) {
+
         $altura = $_POST["altura"];
     }
     if(isset($_POST["peso"])){
+
         $peso = $_POST["peso"];
     }
-    $imc=$peso/($altura*$altura);
-    $imc=round($imc,3);
-    if ($imc<18.5) {
-        $msg="Abaixo do Peso!!!";
-    }else if($imc>=18.5 && $imc<25) {
-        $msg="Peso normal!!!";
-    }else if($imc>=25 && $imc<30) {
-        $msg="Acima do peso!!!";
+    
+    
+    if ( is_numeric($altura) &&  is_numeric($peso)) {
+        $imc=$peso/($altura*$altura);
+        $imc=round($imc,3);
+        if ($imc<18.5) {
+            $msg="Abaixo do Peso!!!";
+        }else if($imc>=18.5 && $imc<25) {
+            $msg="Peso normal!!!";
+        }else if($imc>=25 && $imc<30) {
+            $msg="Acima do peso!!!";
+        }else{
+                $msg="Obeso!!!";
+        }
     }else{
-        $msg="Obeso!!!";
+        $msg="Algo deu errado.<br>Tente digitar apenas números.";       
     }
+
 }
+
+
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,9 +50,9 @@ if(isset($_POST["calcular"])){
 <body>
     <form action="ListaExerc1_3.php" method="post">
 
-        <label for="altura">Altura</label><input type="text" name="altura"><br><br>
-        <label for="Peso">Peso</label><input type="text" name="peso"> 
-        <input type="submit" name="calcular"><br>  
+        <label for="altura">Altura:   </label><input type="text" name="altura"><br><br>
+        <label for="Peso">Peso:   </label><input type="text" name="peso"><br> <br>
+        <input type="submit" name="calcular">
         <p><?php echo $imc; ?></p>
         <p><?php echo $msg;?></p>
         

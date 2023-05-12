@@ -20,15 +20,20 @@ $msg2="";
     if(isset($_POST["c"])){
         $c = $_POST["c"];
     }
-    $delta=$b*$b-4*$a*$c;
-    if($delta>=0){
-
-        $valor1=(-$b+sqrt($delta))/(2*$a);
-        $msg1="O Valor x1 é:".$valor1;
-        $valor2=(-$b-sqrt($delta))/(2*$a);
-        $msg2="O Valor x2 é:".$valor2;
+    if (is_numeric($a) && is_numeric($b) && is_numeric($c)) {
+        # code...
+        $delta=$b*$b-4*$a*$c;
+        if($delta>=0){
+            
+            $valor1=(-$b+sqrt($delta))/(2*$a);
+            $msg1="O Valor x1 é:".$valor1;
+            $valor2=(-$b-sqrt($delta))/(2*$a);
+            $msg2="O Valor x2 é:".$valor2;
+        }else{
+            $msgerro="Delta é menor que 0.";
+        }
     }else{
-        $msgerro="Delta é menor que 0.";
+        $msgerro="Digite apenas números!";
     }
     
     

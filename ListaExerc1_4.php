@@ -17,12 +17,14 @@ if (isset($_POST["calcular"])) {
     if(isset($_POST["sexo"])) {
         $sexo=$_POST["sexo"];
     }
-
-    $imc=$peso/($altura*$altura);
-    if ($sexo=="homem") {
+    
+    if (is_numeric($altura) && is_numeric($peso) && ($sexo=="homem" || $sexo=="mulher") ) {
         # code...
-        if ($imc<20.7) {
-            $msg="Abaixo do peso";
+        $imc=$peso/($altura*$altura);
+        if ($sexo=="homem") {
+            # code...
+            if ($imc<20.7) {
+                $msg="Abaixo do peso";
         }else if ($imc>=20.7 && $imc<26.4) {
             $msg="Peso normas";
         }else if ($imc>=26.4 && $imc<27.8){
@@ -33,18 +35,21 @@ if (isset($_POST["calcular"])) {
             $msg="Obeso";
         }
 
-    }else{
-        if ($imc<19.1) {
-            $msg="Abaixo do peso";
-        }else if ($imc>=19.1 && $imc<25.8) {
-            $msg="Peso normal";
-        }else if ($imc>=25.8 && $imc<27.3){
-            $msg="Marginalmente acima do peso";
-        }else if ($imc>=27.3 && $imc<=32.3){
-            $msg="Acima do peso ideal";
         }else{
-            $msg="Obeso";
+            if ($imc<19.1) {
+                $msg="Abaixo do peso";
+            }else if ($imc>=19.1 && $imc<25.8) {
+                $msg="Peso normal";
+            }else if ($imc>=25.8 && $imc<27.3){
+                $msg="Marginalmente acima do peso";
+            }else if ($imc>=27.3 && $imc<=32.3){
+                $msg="Acima do peso ideal";
+            }else{
+                $msg="Obeso";
+            }
         }
+    }else{
+        $msg="Algo deu errado.";
     }
 }
 

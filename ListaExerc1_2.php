@@ -3,7 +3,7 @@ $nota1;
 $nota2;
 $nota3;
 $nota4;
-$media;
+$media="";
 if(isset($_POST["calcular"])){
     $botao = $_POST["calcular"];
     
@@ -19,8 +19,13 @@ if(isset($_POST["calcular"])){
     if(isset($_POST["nota4"])){
         $nota4 = $_POST["nota4"];
     }
-
-    $media = ($nota1*2 + $nota2*2 + $nota3*3 + $nota4*3)/10;
+    if (is_numeric($nota1) && is_numeric($nota2) && is_numeric($nota3) && is_numeric($nota4)){
+        # code...
+        $media = ($nota1*2 + $nota2*3 + $nota3*4 + $nota4*5)/14;
+    }else{
+        $media="Digite apenas números, tente novamente.";
+    }
+    
        
 }
 
@@ -35,14 +40,14 @@ if(isset($_POST["calcular"])){
     <title>Document</title>
 </head>
 <body>
-    <form action="ExecLista1_1.php" method="post">
+    <form action="ListaExerc1_2.php" method="post">
 
         Nota1    <input type="text" name="nota1" id=""><br>
         Nota2    <input type="text" name="nota2" id=""><br>
         Nota3    <input type="text" name="nota3" id=""><br>
         Nota4    <input type="text" name="nota4" id=""><br>
         <input type="submit" name="calcular"><br>
-        <p>O Resultado é : <?php echo $media;?></p>
+        <p>O Resultado é : <?php echo round($media,2);?></p>
     </form>
 
 </body>
