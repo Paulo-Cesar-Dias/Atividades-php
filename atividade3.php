@@ -48,7 +48,7 @@
             $resultado=$valor." em números romanos é ".$valorrm;
 
         }else{
-            $resultado="Erro, não foi digitado um número aceito.";
+            $resultado="Erro, não foi digitado um número aceito";
         }
 
     }
