@@ -23,7 +23,7 @@ if(isset($_POST["calcular"])){
                 $valor2--;
                 $valor1=$valor1*($valor2);
 
-                echo $valor1."". $valor2;
+                
 
             }
             $fatoriado=$valor1;
